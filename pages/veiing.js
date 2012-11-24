@@ -45,7 +45,7 @@ sfk.pages = sfk.pages || {};
 
         formList.init([]);
 
-        d.id("container").appendChild(table);
+        d.id("container").appendChild(table.getElement());
     };
 
 }());
