@@ -1,0 +1,15 @@
+
+
+span.status span {
+   display: inline-block;
+   width:16px;
+   height: 16px;
+}
+
+span.dirty {
+   background-image: url('warning.png');
+}
+
+span.saved {
+   background-image: url('ok.png');
+}

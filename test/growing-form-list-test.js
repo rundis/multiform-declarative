@@ -5,7 +5,9 @@
     buster.testCase("Growing Form List", {
         setUp: function () {
             this.container = { add: this.spy() };
-            this.newForm = bane.createEventEmitter();
+            this.newForm = bane.createEventEmitter({
+                getElements: function () { return [1, 2, 3]; }
+            });
             this.createForm = this.stub().returns(this.newForm);
 
             this.list = sfk.growingFormList.create({
@@ -19,7 +21,7 @@
             this.list.init();
 
             assert.calledOnce(this.createForm);
-            assert.calledOnceWith(this.container.add, this.newForm);
+            assert.calledOnceWith(this.container.add, [1, 2, 3]);
         },
 
         "does not create form if not growable": function () {

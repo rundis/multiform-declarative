@@ -8,7 +8,7 @@ sfk.pages = sfk.pages || {};
 
     sfk.pages.setupVeiing = function (params) {
 
-        var table = sfk.table.create(["", "Individ", "Vekt", "Brystomfang", "Hold", "Avvenning", "Dager fra fødsel", "Tilvekst g/dag", "", ""]);
+        var table = comps.table.create(["", "Individ", "Vekt", "Brystomfang", "Hold", "Avvenning", "Dager fra fødsel", "Tilvekst g/dag", "", ""]);
 
         var server = sfk.veiingServer.create();
 
@@ -40,7 +40,7 @@ sfk.pages = sfk.pages || {};
         var formList = sfk.growingFormList.create({
             container: table,
             createForm: createForm,
-            shouldGrow: function (forms) { return !c.some(c.prop("pristine"), forms); }
+            shouldGrow: function (forms) { return !c.some(c.func("isPristine"), forms); }
         });
 
         formList.init([]);
