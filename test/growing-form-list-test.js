@@ -5,7 +5,7 @@
     buster.testCase("Growing Form List", {
         setUp: function () {
             this.container = { add: this.spy() };
-            this.newForm = buster.eventEmitter.create();
+            this.newForm = bane.createEventEmitter();
             this.createForm = this.stub().returns(this.newForm);
 
             this.list = sfk.growingFormList.create({
