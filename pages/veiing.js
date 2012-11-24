@@ -13,14 +13,12 @@ sfk.pages = sfk.pages || {};
         var server = sfk.veiingServer.create();
 
         function createForm() {
-            var status = comps.formStatus.create("pristine");
             var dager = comps.label.create();
             var tilvekst = comps.label.create();
 
             var form = sfk.saveableForm.create({
-                server: server,
+                saver: sfk.veiingSaver.create(server),
                 components: [
-                    status,
                     comps.individSelector.create({ server: server }),
                     comps.integerRange.create({ name: "vekt", min: 1, max: 2000 }),
                     comps.integerRange.create({ name: "brystomfang", min: 100, max: 200 }),
@@ -31,14 +29,9 @@ sfk.pages = sfk.pages || {};
                 ]
             });
 
-            form.on("change", function () { status.update("dirty"); });
-
-            form.on("error", function () { status.update("error"); });
-
             form.on("save", function (veiing) {
                 dager.set(veiing.dager);
                 tilvekst.set(veiing.tilvekst);
-                status.update("saved");
             });
 
             return form;
