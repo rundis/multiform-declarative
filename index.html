@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+
+    <h1>Registrer veiing</h1>
+
+    <div id="container"> </div>
+
+    <script src="external/underscore.js"></script>
+    <script src="external/cull.js"></script>
+
+    <script src="pages/veiing.js"></script>
+
+    <script>
+      sfk.pages.setupVeiing({
+          hold: [
+              { value: null, text: "" },
+              { value: 1, text: "1: Godt" },
+              { value: 2, text: "2: Middels" },
+              { value: 3, text: "3: Dårlig" },
+              { value: 4, text: "4: Vet ikke" }
+          ],
+          avvenning: [
+              { value: null, text: "" },
+              { value: true, text: "1: Ja" },
+              { value: false, text: "2: Nei" }
+          ]
+      });
+    </script>
+
+  </body>
+</html>
