@@ -22,6 +22,7 @@
     <script src="lib/form-status.js"></script>
     <script src="lib/growing-form-list.js"></script>
     <script src="lib/input-field.js"></script>
+    <script src="lib/select-field.js"></script>
     <script src="lib/integer-range.js"></script>
     <script src="lib/label.js"></script>
     <script src="lib/saveable-form.js"></script>
@@ -35,15 +36,15 @@
       sfk.pages.setupVeiing({
           hold: [
               { value: null, text: "" },
-              { value: 1, text: "1: Godt" },
-              { value: 2, text: "2: Middels" },
-              { value: 3, text: "3: Dårlig" },
-              { value: 4, text: "4: Vet ikke" }
+              { value: 1, label: "1: Godt" },
+              { value: 2, label: "2: Middels" },
+              { value: 3, label: "3: Dårlig" },
+              { value: 4, label: "4: Vet ikke" }
           ],
           avvenning: [
-              { value: null, text: "" },
-              { value: true, text: "1: Ja" },
-              { value: false, text: "2: Nei" }
+              { value: null, label: "" },
+              { value: true, label: "1: Ja" },
+              { value: false, label: "2: Nei" }
           ]
       });
     </script>

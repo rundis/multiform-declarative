@@ -1,15 +1,19 @@
 (function () {
-    buster.testCase("Input Field", {
+    buster.testCase("Select Field", {
         setUp: function () {
-            this.field = sfk.components.inputField.create({
-                name: "blapp"
+            this.field = sfk.components.selectField.create({
+                name: "blapp",
+                options: [
+                    {value:"1000", label:"Jalla"},
+                    {value:"2000", label:"Dalla"}
+                ]
             });
 
             this.element = this.field.getElement();
         },
 
         "should be a regular old input for now": function () {
-            assert.tagName(this.element, "input");
+            assert.tagName(this.element, "select");
         },
 
         "dom change event triggers change": function () {
@@ -27,9 +31,10 @@
         },
 
         "should get state": function () {
-            this.element.value = "9000";
+            this.element.selectedIndex = "1";
 
-            assert.equals(this.field.getState(), { name: "blapp", value: "9000" });
+            assert.equals(this.field.getState(), { name: "blapp", value: "2000" });
         }
+
     });
 }());
