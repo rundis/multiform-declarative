@@ -15,9 +15,7 @@
         "should trigger change": function () {
             var listener = this.spy();
             this.field.on("change", listener);
-
-            this.element.onchange(); // todo: bruk et rammeverk for event binding + keyup
-
+            bean.fire(this.element, "change");
             assert.calledOnce(listener);
         },
 
