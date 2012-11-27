@@ -23,13 +23,6 @@
             assert.calledOnce(listener);
         },
 
-        "dom keyup event triggers change": function () {
-            var listener = this.spy();
-            this.field.on("change", listener);
-            bean.fire(this.element, "keyup");
-            assert.calledOnce(listener);
-        },
-
         "should get state": function () {
             this.element.selectedIndex = "1";
 

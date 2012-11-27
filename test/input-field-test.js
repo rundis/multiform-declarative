@@ -14,6 +14,7 @@
 
         "dom change event triggers change": function () {
             var listener = this.spy();
+            this.element.value="23";
             this.field.on("change", listener);
             bean.fire(this.element, "change");
             assert.calledOnce(listener);
@@ -21,8 +22,9 @@
 
         "dom keyup event triggers change": function () {
             var listener = this.spy();
+            this.element.value="23";
             this.field.on("change", listener);
-            bean.fire(this.element, "keyup");
+            bean.fire(this.element, "keyup", "1");
             assert.calledOnce(listener);
         },
 
