@@ -4,7 +4,7 @@
 
     buster.testCase("Growing Form List", {
         setUp: function () {
-            this.container = { add: this.spy(), delete: this.spy() };
+            this.container = { add: this.spy(), remove: this.spy() };
             this.newForm = bane.createEventEmitter({
                 getElements: function () { return [1, 2, 3]; }
             });
@@ -76,15 +76,16 @@
             this.existingForm2.emit("delete");
             this.existingForm1.emit("delete");
 
-            assert.calledWith(this.container.delete, 1);
-            assert.calledWith(this.container.delete, 0);
+            assert.calledWith(this.container.remove, 1);
+            assert.calledWith(this.container.remove, 0);
         },
 
         "delete of list with one, deletes and adds new": function() {
             this.list.init();
             this.newForm.emit("delete");
-            assert.calledWith(this.container.delete, 0);
+            assert.calledWith(this.container.remove, 0);
             assert.calledTwice(this.createForm);
+            assert.calledTwice(this.container.add);
         }
     });
 }());
