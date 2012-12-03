@@ -45,6 +45,7 @@
             this.listWithExistingForms.init();
             assert.calledOnce(this.createForm);
             assert.calledOnceWith(this.container.add, [1, 2, 3]);
+            assert.equals(this.listWithExistingForms.forms.length, 3);
         },
 
         "does not create form if not growable": function () {
@@ -73,11 +74,13 @@
         "deletes form from list upon delete event": function() {
             this.listWithExistingForms.init();
 
+
             this.existingForm2.emit("delete");
             this.existingForm1.emit("delete");
 
             assert.calledWith(this.container.remove, 1);
             assert.calledWith(this.container.remove, 0);
+            assert.equals(this.listWithExistingForms.forms.length, 1);
         },
 
         "delete of list with one, deletes and adds new": function() {
