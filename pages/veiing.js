@@ -18,12 +18,14 @@ sfk.pages = sfk.pages || {};
 
             var form = sfk.saveableForm.create({
                 saver: sfk.veiingSaver.create(server),
+                deleter: sfk.veiingDeleter.create(server),
+
                 components: [
                     comps.inputField.create({ name: "individ" }),
                     comps.integerRange.create({ name: "vekt", min: 1, max: 2000 }),
                     comps.integerRange.create({ name: "brystomfang", min: 100, max: 200 }),
                     comps.selectField.create({ name: "hold", options: params.hold }),
-                    //comps.select.create({ name: "avvenning", options: params.avvenning }),
+                    comps.selectField.create({ name: "avvenning", options: params.avvenning }),
                     dager,
                     tilvekst
                 ]

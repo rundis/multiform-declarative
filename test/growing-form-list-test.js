@@ -4,7 +4,7 @@
 
     buster.testCase("Growing Form List", {
         setUp: function () {
-            this.container = { add: this.spy() };
+            this.container = { add: this.spy(), delete: this.spy() };
             this.newForm = bane.createEventEmitter({
                 getElements: function () { return [1, 2, 3]; }
             });
@@ -15,11 +15,34 @@
                 createForm: this.createForm,
                 shouldGrow: t
             });
+
+
+            this.existingForm1 = bane.createEventEmitter({
+                getElements: function () { return [1, 2, 3]; },
+                getId: function() {return "123"; }
+            });
+            this.existingForm2 = bane.createEventEmitter({
+                getElements: function () { return [1, 2, 3]; },
+                getId: function() {return "124"; }
+            });
+
+            this.listWithExistingForms = sfk.growingFormList.create({
+                container: this.container,
+                createForm: this.createForm,
+                shouldGrow: t,
+                forms: [this.existingForm1, this.existingForm2]
+            });
         },
 
         "creates first form": function () {
             this.list.init();
 
+            assert.calledOnce(this.createForm);
+            assert.calledOnceWith(this.container.add, [1, 2, 3]);
+        },
+
+        "creates empty form for list with existing forms": function() {
+            this.listWithExistingForms.init();
             assert.calledOnce(this.createForm);
             assert.calledOnceWith(this.container.add, [1, 2, 3]);
         },
@@ -45,6 +68,23 @@
                 this.newForm.emit("change");
             }
             assert.calledThrice(this.createForm);
+        },
+
+        "deletes form from list upon delete event": function() {
+            this.listWithExistingForms.init();
+
+            this.existingForm2.emit("delete");
+            this.existingForm1.emit("delete");
+
+            assert.calledWith(this.container.delete, 1);
+            assert.calledWith(this.container.delete, 0);
+        },
+
+        "delete of list with one, deletes and adds new": function() {
+            this.list.init();
+            this.newForm.emit("delete");
+            assert.calledWith(this.container.delete, 0);
+            assert.calledTwice(this.createForm);
         }
     });
 }());

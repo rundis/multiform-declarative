@@ -12,7 +12,7 @@
             this.element = this.field.getElement();
         },
 
-        "should be a regular old input for now": function () {
+        "should be a regular old select for now": function () {
             assert.tagName(this.element, "select");
         },
 
