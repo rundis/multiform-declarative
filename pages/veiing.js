@@ -32,7 +32,6 @@ sfk.pages = sfk.pages || {};
             });
 
             form.on("save", function (veiing) {
-                console.log("Veiingform on save");
                 dager.set(veiing.dager);
                 tilvekst.set(veiing.tilvekst);
             });
