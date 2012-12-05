@@ -18,8 +18,16 @@
             this.element.value = 8;
             refute(this.field.isValid());
 
+            this.element.value = 12;
+            refute(this.field.isValid());
+
             this.element.value = 7;
             assert(this.field.isValid());
+        },
+
+        "should really be an integer" : function() {
+            this.element.value = "abc";
+            refute(this.field.isValid());
         }
     });
 }());

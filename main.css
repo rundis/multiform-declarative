@@ -13,3 +13,7 @@ span.dirty {
 span.saved {
    background-image: url('ok.png');
 }
+
+.error {
+    border: 1px solid red;
+}
