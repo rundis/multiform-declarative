@@ -28,6 +28,14 @@
         "should really be an integer" : function() {
             this.element.value = "abc";
             refute(this.field.isValid());
+        },
+
+        "must have a value if mandatory": function() {
+            this.field.mandatory = true;
+            refute(this.field.isValid());
+
+            this.element.value=7;
+            assert(this.field.isValid());
         }
     });
 }());

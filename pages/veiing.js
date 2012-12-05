@@ -24,7 +24,7 @@ sfk.pages = sfk.pages || {};
                     comps.inputField.create({ name: "individ" }),
                     comps.integerRange.create({ name: "vekt", min: 1, max: 2000 }),
                     comps.integerRange.create({ name: "brystomfang", min: 100, max: 200 }),
-                    comps.selectField.create({ name: "hold", options: params.hold }),
+                    comps.selectField.create({ name: "hold", mandatory:true, options: params.hold }),
                     comps.selectField.create({ name: "avvenning", options: params.avvenning }),
                     dager,
                     tilvekst
