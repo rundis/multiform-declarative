@@ -12,7 +12,7 @@
             assert.tagName(this.element, "input");
         },
 
-        "dom change event triggers change": function () {
+        "triggers change on dom change event": function () {
             var listener = this.spy();
             this.element.value="23";
             this.field.on("change", listener);
@@ -20,7 +20,7 @@
             assert.calledOnce(listener);
         },
 
-        "dom keyup event triggers change": function () {
+        "triggers change on dom keyup event": function () {
             var listener = this.spy();
             this.element.value="23";
             this.field.on("change", listener);
@@ -34,29 +34,22 @@
             assert.equals(this.field.getState(), { name: "blapp", value: "9000" });
         },
 
-        "input field is default valid regardless": function() {
+        "is default valid regardless": function() {
             assert(this.field.isValid());
         },
 
-        "mandatory field is valid when has value": function () {
+        "is valid when mandatory when has value": function () {
             this.field.mandatory = true;
             this.element.value = "1";
             assert(this.field.isValid());
         },
 
-        "mandatory field is not valid if empty": function() {
+        "is invalid if mandatory field is blank": function() {
             this.field.mandatory = true;
             refute(this.field.isValid());
         },
 
-        "mandatory field not valid if only blanks": function () {
-            this.field.mandatory = true;
-            this.element.value = "    ";
-            refute(this.field.isValid());
-        },
-
-
-        "field validates on blur": function () {
+        "validates on blur": function () {
             this.field.mandatory = true;
             bean.fire(this.element, "blur");
             assert.className(this.element, "error");
