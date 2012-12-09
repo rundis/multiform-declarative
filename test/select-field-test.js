@@ -30,7 +30,7 @@
             assert.equals(this.field.getState(), { name: "blapp", value: "2000" });
         },
 
-        "default always valid": function () {
+        "is default always valid": function () {
             assert(this.field.isValid());
         },
 
@@ -49,11 +49,6 @@
             assert.className(this.element, "error");
 
         }
-
-
-
-
-
 
     });
 }());
