@@ -8,7 +8,7 @@ sfk.pages = sfk.pages || {};
 
     sfk.pages.setupVeiing = function (params) {
 
-        var table = comps.table.create(["", "Individ", "Vekt", "Brystomfang", "Hold", "Avvenning", "Dager fra fødsel", "Tilvekst g/dag", "", ""]);
+        var table = comps.table.create(["", "Individ", "Dato", "Vekt", "Brystomfang", "Hold", "Avvenning", "Dager fra fødsel", "Tilvekst g/dag", "", ""]);
 
         var server = sfk.veiingServer.create();
 
@@ -22,6 +22,7 @@ sfk.pages = sfk.pages || {};
 
                 components: [
                     comps.inputField.create({ name: "individ" }),
+                    comps.dateField.create({ name: "dato", mandatory: true}),
                     comps.integerRange.create({ name: "vekt", min: 1, max: 2000 }),
                     comps.integerRange.create({ name: "brystomfang", min: 100, max: 200 }),
                     comps.selectField.create({ name: "hold", mandatory:true, options: params.hold }),
