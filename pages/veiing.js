@@ -22,7 +22,7 @@ sfk.pages = sfk.pages || {};
 
                 components: [
                     comps.inputField.create({ name: "individ" }),
-                    comps.dateField.create({ name: "dato", mandatory: true}),
+                    comps.dateField.create({ name: "dato", mandatory: true, suggest: sfk.dateSuggester.suggest}),
                     comps.integerRange.create({ name: "vekt", min: 1, max: 2000 }),
                     comps.integerRange.create({ name: "brystomfang", min: 100, max: 200 }),
                     comps.selectField.create({ name: "hold", mandatory:true, options: params.hold }),
