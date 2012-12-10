@@ -1,21 +1,31 @@
 (function () {
     buster.testCase("Button", {
+        setUp: function() {
+            this.button = sfk.components.button.create("Heisann");
+            this.element = this.button.getElement();
+        },
         "should have an input button with the given text": function () {
-            var button = sfk.components.button.create("Heisann");
-            var element = button.getElement();
-            assert.tagName(element, "input");
-            assert.equals(element.value, "Heisann");
-            assert.equals(element.type, "button");
+            assert.tagName(this.element, "input");
+            assert.equals(this.element.value, "Heisann");
+            assert.equals(this.element.type, "button");
         },
 
         "should propagate clicks": function () {
             var listener = this.spy();
-            var button = sfk.components.button.create("Heisann");
-            button.on("click", listener);
 
-            button.getElement().click();
+            this.button.on("click", listener);
+
+            this.button.getElement().click();
 
             assert.calledOnce(listener);
+        },
+
+        "may toggle disabled": function () {
+            this.button.disable();
+            assert.equals(this.element.getAttribute("disabled"), "disabled");
+
+            this.button.enable();
+            refute(this.element.hasAttribute("disabled"));
         }
     });
 }());

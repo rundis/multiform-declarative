@@ -28,12 +28,15 @@
         "calls date suggestion on blur if suggest function provided": function() {
             this.fieldWithSuggest.element.value = "0101";
             this.suggest.returns(new Date(2012, 0, 1));
+            var changeListener = this.spy();
+            this.fieldWithSuggest.on("change", changeListener);
 
             bean.fire(this.fieldWithSuggest.element, "blur");
 
             assert.calledOnceWith(this.suggest, "0101");
             assert.equals(this.fieldWithSuggest.element.value, "01/01/12");
             refute.className(this.fieldWithSuggest.element, "error");
+            assert.calledOnce(changeListener);
         },
 
         "leaves value intact if suggest function returns null": function () {
