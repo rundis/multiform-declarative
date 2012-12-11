@@ -10,6 +10,11 @@
             assert.equals(this.element.type, "button");
         },
 
+        "may be disabled upon creation": function() {
+            var b = sfk.components.button.create("Dill", {disabled:true});
+            assert.equals(b.element.getAttribute("disabled"), "disabled");
+        },
+
         "should propagate clicks": function () {
             var listener = this.spy();
 
@@ -18,6 +23,15 @@
             this.button.getElement().click();
 
             assert.calledOnce(listener);
+        },
+
+        "should invoke click handler if provided": function() {
+            var clickHandler = this.spy();
+            var b = sfk.components.button.create("Dall", {onclick: clickHandler});
+
+            b.getElement().click();
+
+            assert.calledOnce(clickHandler);
         },
 
         "may toggle disabled": function () {
