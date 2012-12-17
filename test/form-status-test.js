@@ -1,7 +1,7 @@
 (function () {
     buster.testCase("Form Status", {
         "have element of span.status > span.pristine": function () {
-            var status = sfk.components.formStatus.create("pristine");
+            var status = sfk.components.formStatus.create({initial:"pristine"});
             var element = status.getElement();
 
             assert.tagName(element, "span");
@@ -12,7 +12,7 @@
         },
 
         "should update status": function () {
-            var status = sfk.components.formStatus.create("pristine");
+            var status = sfk.components.formStatus.create({initial: "pristine"});
             var element = status.getElement();
 
             status.update("dirty");

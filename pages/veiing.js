@@ -8,33 +8,43 @@ sfk.pages = sfk.pages || {};
 
     sfk.pages.setupVeiing = function (params) {
 
-        var table = comps.table.create(["", "Individ", "Dato (*)", "Vekt", "Brystomfang", "Hold (*)", "Avvenning", "Dager fra fødsel", "Tilvekst g/dag", "", ""]);
+
+        var formComponentsTemplate  = sfk.components.formComponentsTemplate.create({
+            "status":      {type: "formStatus", initial: "pristine"},
+            "individ":     {type: "inputField", mandatory:true, label: "Individ"},
+            "dato":        {type: "dateField" , label: "Dato", mandatory: true, suggest: sfk.dateSuggester.suggest},
+            "vekt":        {type: "integerRange", label: "Vekt", min: 1, max: 2000 },
+            "brystomfang": {type: "integerRange", label: "Brystomfang", min: 100, max: 200 },
+            "hold":        {type: "selectField",  label: "Hold", mandatory:true, options: params.hold },
+            "avvenning":   {type: "selectField", label: "Avvenning", options: params.avvenning },
+            "dager":       {type: "label", label: "Dager fra fødsel"},
+            "tilvekst":    {type: "label", label: "Tilvekst g/dag"},
+            "lagre":       {type: "button", label: "Lagre"},
+            "slett":       {type: "button", label: "Slett"}
+        });
+
+
+        var table = comps.table.create(
+            ["status", "individ", "dato", "vekt", "brystomfang", "hold", "avvenning", "dager", "tilvekst", "lagre", "slett"],
+            formComponentsTemplate.componentDefinitions);
 
         var server = sfk.veiingServer.create();
+
 
         function createForm() {
             var dager = comps.label.create();
             var tilvekst = comps.label.create();
+            var components = formComponentsTemplate.createComponents();
 
             var form = sfk.saveableForm.create({
                 saver: sfk.veiingSaver.create(server),
                 deleter: sfk.veiingDeleter.create(server),
-
-                components: [
-                    comps.inputField.create({ name: "individ" }),
-                    comps.dateField.create({ name: "dato", mandatory: true, suggest: sfk.dateSuggester.suggest}),
-                    comps.integerRange.create({ name: "vekt", min: 1, max: 2000 }),
-                    comps.integerRange.create({ name: "brystomfang", min: 100, max: 200 }),
-                    comps.selectField.create({ name: "hold", mandatory:true, options: params.hold }),
-                    comps.selectField.create({ name: "avvenning", options: params.avvenning }),
-                    dager,
-                    tilvekst
-                ]
+                components: components
             });
 
             form.on("save", function (veiing) {
-                dager.set(veiing.dager);
-                tilvekst.set(veiing.tilvekst);
+                components.dager.set(veiing.dager);
+                components.tilvekst.set(veiing.tilvekst);
             });
 
             return form;

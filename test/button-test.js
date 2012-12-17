@@ -1,7 +1,7 @@
 (function () {
     buster.testCase("Button", {
         setUp: function() {
-            this.button = sfk.components.button.create("Heisann");
+            this.button = sfk.components.button.create({label: "Heisann"});
             this.element = this.button.getElement();
         },
         "should have an input button with the given text": function () {
@@ -11,7 +11,7 @@
         },
 
         "may be disabled upon creation": function() {
-            var b = sfk.components.button.create("Dill", {disabled:true});
+            var b = sfk.components.button.create({label: "Dill", disabled:true});
             assert.equals(b.element.getAttribute("disabled"), "disabled");
         },
 
@@ -27,7 +27,7 @@
 
         "should invoke click handler if provided": function() {
             var clickHandler = this.spy();
-            var b = sfk.components.button.create("Dall", {onclick: clickHandler});
+            var b = sfk.components.button.create({label: "Dall", onclick: clickHandler});
 
             b.getElement().click();
 
