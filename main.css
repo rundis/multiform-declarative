@@ -17,3 +17,7 @@ span.saved {
 .error {
     border: 1px solid red;
 }
+
+th.mandatory:after {
+    content: "(*)";
+}

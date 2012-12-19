@@ -2,7 +2,7 @@
     buster.testCase("Table", {
         "setUp": function() {
             this.componentDefinitions  = {
-                "dill":     {type: "input", label:"2.Dill"},
+                "dill":     {type: "input", label:"2.Dill", mandatory:true},
                 "dall":     {type: "integerRange" },
                 "dull":     {type: "dateField", label:"1.Dull"},
                 "jall":     {type: "label"}
@@ -19,7 +19,8 @@
             assert.tagName(this.element.firstChild.firstChild, "tr");
             assert.equals(this.element.firstChild.firstChild.childNodes.length, 3);
             assert.tagName(this.element.firstChild.firstChild.firstChild, "th");
-            assert.match(this.element.firstChild.firstChild.firstChild.innerHTML, "1.Dull");
+            assert.equals(this.element.firstChild.firstChild.firstChild.innerHTML, "1.Dull");
+            assert.className(this.element.firstChild.firstChild.childNodes[1], "mandatory");
         },
 
         "should add rows": function () {
