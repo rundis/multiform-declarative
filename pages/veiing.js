@@ -59,6 +59,20 @@ sfk.pages = sfk.pages || {};
         formList.init([]);
 
         d.id("container").appendChild(table.getElement());
+
+        var acContainer = document.createElement("div");
+
+
+        var ac = sfk.components.autocomplete.create({
+            searcher: sfk.individSearcher.create(),
+            resultRenderer: sfk.autocompleteView.create({container: acContainer})
+        });
+
+
+        d.id("container").appendChild(ac.getElement());
+        d.id("container").appendChild(acContainer);
+
+
     };
 
 }());
