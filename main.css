@@ -21,3 +21,18 @@ span.saved {
 th.mandatory:after {
     content: "(*)";
 }
+
+ol.sfk-autocomplete-results {
+    background-color: yellow;
+    list-style-type:none;
+    margin:0;
+    padding:0;
+}
+
+ol.sfk-autocomplete-results li a:hover {
+    background-color: gray;
+}
+
+ol.sfk-autocomplete-results li a.selected {
+    background-color: green;
+}

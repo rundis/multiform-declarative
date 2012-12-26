@@ -65,7 +65,7 @@ sfk.pages = sfk.pages || {};
 
         var ac = sfk.components.autocomplete.create({
             searcher: sfk.individSearcher.create(),
-            resultRenderer: sfk.autocompleteView.create({container: acContainer})
+            resultView: sfk.autocompleteView.create({container: acContainer})
         });
 
 
