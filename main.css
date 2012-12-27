@@ -27,6 +27,12 @@ ol.sfk-autocomplete-results {
     list-style-type:none;
     margin:0;
     padding:0;
+    width:100px;
+}
+
+ol.sfk-autocomplete-results li a {
+    width: 100%;
+    display: block;
 }
 
 ol.sfk-autocomplete-results li a:hover {

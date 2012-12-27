@@ -8,10 +8,9 @@ sfk.pages = sfk.pages || {};
 
     sfk.pages.setupVeiing = function (params) {
 
-
         var formComponentsTemplate  = sfk.components.formComponentsTemplate.create({
             "status":      {type: "formStatus", initial: "pristine"},
-            "individ":     {type: "inputField", mandatory:true, label: "Individ"},
+            "individ":     {type: "autocomplete", mandatory:true, label: "Individ"},
             "dato":        {type: "dateField" , label: "Dato", mandatory: true, suggest: sfk.dateSuggester.suggest},
             "vekt":        {type: "integerRange", label: "Vekt", min: 1, max: 2000 },
             "brystomfang": {type: "integerRange", label: "Brystomfang", min: 100, max: 200 },
@@ -32,9 +31,14 @@ sfk.pages = sfk.pages || {};
 
 
         function createForm() {
-            var dager = comps.label.create();
-            var tilvekst = comps.label.create();
+            // ugly hack
+            var individSearcher = sfk.individSearcher.create();
+            formComponentsTemplate.componentDefinitions.individ.searcher = individSearcher;
+            // end ugly hach
+
             var components = formComponentsTemplate.createComponents();
+
+            components.individ.searcher = individSearcher;
 
             var form = sfk.saveableForm.create({
                 saver: sfk.veiingSaver.create(server),
@@ -60,17 +64,17 @@ sfk.pages = sfk.pages || {};
 
         d.id("container").appendChild(table.getElement());
 
-        var acContainer = document.createElement("div");
+        //var acContainer = document.getElementsByTagName("body")[0];//.createElement("div");
 
 
-        var ac = sfk.components.autocomplete.create({
+        /*var ac = sfk.components.autocomplete.create({
             searcher: sfk.individSearcher.create(),
             resultView: sfk.autocompleteView.create({container: acContainer})
-        });
+        });*/
 
 
-        d.id("container").appendChild(ac.getElement());
-        d.id("container").appendChild(acContainer);
+       // d.id("container").appendChild(ac.getElement());
+        //d.id("container").appendChild(acContainer);
 
 
     };
