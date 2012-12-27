@@ -88,7 +88,20 @@
             view.render(items, this.position);
 
             assert.equals(view.select(), items[0]);
+        },
 
+        "is not selectable when no items": function() {
+            this.view.render([], this.position);
+            refute(this.view.isSelectable());
+
+            this.view.render(null, this.position);
+            refute(this.view.isSelectable());
+        },
+
+        "is not selectable when closed": function() {
+            this.view.render(["item"], this.position);
+            this.view.close();
+            refute(this.view.isSelectable());
         }
     });
 }());
