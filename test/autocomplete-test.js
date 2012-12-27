@@ -6,7 +6,8 @@
                 render: this.spy(),
                 next: this.spy(),
                 previous: this.spy(),
-                select: this.spy()
+                select: this.spy(),
+                close: this.spy()
             };
             this.ac = sfk.components.autocomplete.create({
                 searcher: this.searcher,
@@ -41,6 +42,10 @@
             assert.calledOnce(this.resultView.select);
         },
 
+        "esc closes view": function() {
+            bean.fire(this.element, "keyup", {keyCode: 27});
+            assert.calledOnce(this.resultView.close);
+        },
 
         "displays search result": function () {
             var results = ["Dill", "Dall"];
