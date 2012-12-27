@@ -20,6 +20,16 @@
             assert.match(this.container.lastChild.childNodes[1].innerHTML, "Item 2");
         },
 
+        "calls custom renderItem callback": function() {
+            var renderItem  = this.spy();
+            var view = sfk.autocompleteView.create({container: this.container, renderItem: renderItem});
+            var items = [{id: "1", name:"Item 1"}, {id: "2", name:"Item 2"}];
+            view.render(items, this.position);
+
+            assert.calledWith(renderItem, items[0]);
+            assert.calledWith(renderItem, items[1]);
+        },
+
         "renders only one list to container": function () {
             this.view.render(["Item 1", "Item 2"], this.position);
             this.view.render(["Item 1", "Item 2"], this.position);
@@ -67,6 +77,18 @@
 
             assert.equals(selected, "Item 1");
             assert.equals(this.view.list.getAttribute("style"), "display:none;");
+        },
+
+        "select returns item as passed to render": function() {
+            var renderItem  = function(item) {
+                return item.name;
+            };
+            var view = sfk.autocompleteView.create({container: this.container, renderItem: renderItem});
+            var items = [{id: "1", name:"Item 1"}, {id: "2", name:"Item 2"}];
+            view.render(items, this.position);
+
+            assert.equals(view.select(), items[0]);
+
         }
     });
 }());

@@ -33,6 +33,11 @@ sfk.pages = sfk.pages || {};
         function createForm() {
             // ugly hack
             var individSearcher = sfk.individSearcher.create();
+            var resultView = sfk.autocompleteView.create({
+                container:  document.getElementsByTagName("body")[0],
+                renderItem: function(item) { return item.inr + "/" + item.pnr; }
+            });
+            formComponentsTemplate.componentDefinitions.individ.resultView = resultView;
             formComponentsTemplate.componentDefinitions.individ.searcher = individSearcher;
             // end ugly hach
 

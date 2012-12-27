@@ -7,6 +7,7 @@
                 next: this.spy(),
                 previous: this.spy(),
                 select: this.spy(),
+                renderItem: this.spy(),
                 close: this.spy()
             };
             this.ac = sfk.components.autocomplete.create({
@@ -40,6 +41,7 @@
         "enter selects current item in view": function() {
             bean.fire(this.element, "keyup", {keyCode: 13});
             assert.calledOnce(this.resultView.select);
+            assert.calledOnce(this.resultView.renderItem);
         },
 
         "esc closes view": function() {
