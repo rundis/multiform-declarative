@@ -31,15 +31,13 @@ sfk.pages = sfk.pages || {};
 
 
         function createForm() {
-            // ugly hack
             var individSearcher = sfk.individSearcher.create();
             var resultView = sfk.autocompleteView.create({
                 container:  document.getElementsByTagName("body")[0],
-                renderItem: function(item) { return item.inr + "/" + item.pnr; }
+                renderItem: function(item) { return item.pnr + "/" + item.inr; }
             });
             formComponentsTemplate.componentDefinitions.individ.resultView = resultView;
             formComponentsTemplate.componentDefinitions.individ.searcher = individSearcher;
-            // end ugly hach
 
             var components = formComponentsTemplate.createComponents();
 
@@ -68,19 +66,6 @@ sfk.pages = sfk.pages || {};
         formList.init([]);
 
         d.id("container").appendChild(table.getElement());
-
-        //var acContainer = document.getElementsByTagName("body")[0];//.createElement("div");
-
-
-        /*var ac = sfk.components.autocomplete.create({
-            searcher: sfk.individSearcher.create(),
-            resultView: sfk.autocompleteView.create({container: acContainer})
-        });*/
-
-
-       // d.id("container").appendChild(ac.getElement());
-        //d.id("container").appendChild(acContainer);
-
 
     };
 
