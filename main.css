@@ -23,11 +23,12 @@ th.mandatory:after {
 }
 
 ol.sfk-autocomplete-results {
-    background-color: yellow;
     list-style-type:none;
+    background-color: white;
     margin:0;
-    padding:0;
-    width:100px;
+    padding:2px;
+    width:120px;
+    border: 1px solid lightgray;
 }
 
 ol.sfk-autocomplete-results li a {
@@ -35,10 +36,7 @@ ol.sfk-autocomplete-results li a {
     display: block;
 }
 
-ol.sfk-autocomplete-results li a:hover {
-    background-color: gray;
-}
-
-ol.sfk-autocomplete-results li a.selected {
-    background-color: green;
+ol.sfk-autocomplete-results li a:hover, ol.sfk-autocomplete-results li a.selected {
+    background-color: #1c94c4;
+    color: white;
 }
