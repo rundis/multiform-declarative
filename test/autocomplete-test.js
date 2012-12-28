@@ -13,6 +13,7 @@
             };
             this.ac = sfk.components.autocomplete.create({
                 searcher: this.searcher,
+                delay: 0,
                 resultView: this.resultView
             });
             this.element = this.ac.getElement();
@@ -44,6 +45,11 @@
             bean.fire(this.element, "blur");
             assert.className(this.element, "error");
 
+        },
+
+        "closes view on blur": function() {
+            bean.fire(this.element, "blur");
+            assert.called(this.resultView.close);
         },
 
         "render display val on blur": function() {
