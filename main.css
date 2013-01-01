@@ -14,6 +14,10 @@ span.saved {
    background-image: url('ok.png');
 }
 
+span.error {
+   background-image: url('error.png');
+}
+
 .error {
     border: 1px solid red;
 }
@@ -39,4 +43,16 @@ ol.sfk-autocomplete-results li a {
 ol.sfk-autocomplete-results li a:hover, ol.sfk-autocomplete-results li a.selected {
     background-color: #1c94c4;
     color: white;
+}
+
+div.sfk-tooltip {
+    display: block;
+    border: 1px solid lightgray;
+    max-width: 300px;
+}
+
+div.sfk-tooltip h3 {
+    padding: 2px;
+    margin: 0;
+    background-color: lightgray;
 }
