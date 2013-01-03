@@ -49,6 +49,7 @@ div.sfk-tooltip {
     display: block;
     border: 1px solid lightgray;
     max-width: 300px;
+    background-color: white;
 }
 
 div.sfk-tooltip h3 {

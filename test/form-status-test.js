@@ -1,23 +1,39 @@
 (function () {
     buster.testCase("Form Status", {
-        "have element of span.status > span.pristine": function () {
-            var status = sfk.components.formStatus.create({initial:"pristine"});
-            var element = status.getElement();
-
-            assert.tagName(element, "span");
-            assert.className(element, "status");
-
-            assert.tagName(element.firstChild, "span");
-            assert.className(element.firstChild, "pristine");
+        setUp: function () {
+            this.status = sfk.components.formStatus.create({initial:"pristine"});
+            this.element = this.status.getElement();
+            this.spy(this.status.tooltip, "enable");
+            this.spy(this.status.tooltip, "disable");
+            this.spy(this.status.tooltip, "setMessage");
         },
 
-        "should update status": function () {
-            var status = sfk.components.formStatus.create({initial: "pristine"});
-            var element = status.getElement();
+        "have element of span.status > span.pristine": function () {
+            assert.tagName(this.element, "span");
+            assert.className(this.element, "status");
 
-            status.update("dirty");
+            assert.tagName(this.element.firstChild, "span");
+            assert.className(this.element.firstChild, "pristine");
+        },
 
-            assert.className(element.firstChild, "dirty");
+        "set dirty": function () {
+            this.status.dirty();
+            assert.className(this.element.firstChild, "dirty");
+            assert.calledOnce(this.status.tooltip.disable);
+        },
+
+        "set saved": function() {
+            this.status.saved();
+            assert.className(this.element.firstChild, "saved");
+            assert.calledOnce(this.status.tooltip.disable);
+        },
+
+        "set error": function() {
+            var errorMsg = "My error message";
+            this.status.error(errorMsg);
+            assert.className(this.element.firstChild, "error");
+            assert.calledOnce(this.status.tooltip.enable);
+            assert.calledWith(this.status.tooltip.setMessage, "Feil!", errorMsg);
         }
     });
 }());

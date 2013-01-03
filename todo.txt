@@ -1,0 +1,2 @@
+- Autocomplete: When deleting form, autocomplete element not deleted from body
+- Tooltip: Clear content on status update
