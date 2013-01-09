@@ -28,6 +28,14 @@
             assert.calledOnce(listener);
         },
 
+        "propagates keydown event": function() {
+            var listener = this.spy();
+            this.field.on("keydown", listener);
+            bean.fire(this.element, "keydown", "1");
+            assert.calledOnce(listener);
+        },
+
+
         "should get state": function () {
             this.element.value = "9000";
 
